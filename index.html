@@ -1,0 +1,1419 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>INFLATION 国际站视觉升级方案</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;700;900&family=Caveat:wght@400;700&family=Playfair+Display:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+/* === RESET & BASE === */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  /* Primary palette */
+  --black: #1A1A1A;
+  --charcoal: #2D2D2D;
+  --white: #FFFFFF;
+  /* Secondary palette */
+  --sand: #C4A882;
+  --warm-gray: #9B9B9B;
+  --cream: #F5F0EB;
+  /* Accent */
+  --dirty-orange: #D4845A;
+  --olive: #5C6B4F;
+  /* Typography */
+  --font-display: 'Bebas Neue', sans-serif;
+  --font-body: 'Inter', sans-serif;
+  --font-handwrite: 'Caveat', cursive;
+  --font-serif: 'Playfair Display', serif;
+}
+
+html { scroll-behavior: smooth; font-size: 16px; }
+body {
+  font-family: var(--font-body);
+  background: var(--black);
+  color: var(--white);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* === NAVIGATION === */
+.nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 20px 60px;
+  background: rgba(26,26,26,0.92);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+.nav-logo {
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  letter-spacing: 6px;
+  color: var(--white);
+}
+.nav-links { display: flex; gap: 32px; }
+.nav-links a {
+  color: var(--warm-gray);
+  text-decoration: none;
+  font-size: 0.75rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  font-weight: 500;
+  transition: color 0.3s;
+}
+.nav-links a:hover { color: var(--white); }
+
+/* === SLIDE SYSTEM === */
+.slide {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 120px 80px 80px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* === COVER SLIDE === */
+.slide-cover {
+  background: var(--black);
+  text-align: center;
+}
+.slide-cover::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background:
+    radial-gradient(ellipse at 20% 50%, rgba(196,168,130,0.08) 0%, transparent 60%),
+    radial-gradient(ellipse at 80% 30%, rgba(212,132,90,0.06) 0%, transparent 50%),
+    radial-gradient(ellipse at 50% 80%, rgba(92,107,79,0.05) 0%, transparent 50%);
+  pointer-events: none;
+}
+.cover-tag {
+  font-size: 0.7rem;
+  letter-spacing: 6px;
+  text-transform: uppercase;
+  color: var(--sand);
+  margin-bottom: 40px;
+  position: relative;
+}
+.cover-title {
+  font-family: var(--font-display);
+  font-size: 5.5rem;
+  letter-spacing: 12px;
+  line-height: 1;
+  margin-bottom: 24px;
+  position: relative;
+}
+.cover-subtitle {
+  font-size: 1.1rem;
+  font-weight: 300;
+  color: var(--warm-gray);
+  max-width: 600px;
+  line-height: 1.8;
+  position: relative;
+  margin-bottom: 60px;
+}
+.cover-brands {
+  display: flex;
+  gap: 48px;
+  position: relative;
+}
+.cover-brand {
+  display: flex; flex-direction: column; align-items: center; gap: 12px;
+}
+.cover-brand-dot {
+  width: 48px; height: 48px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.55rem; letter-spacing: 1px; font-weight: 700;
+  text-transform: uppercase;
+}
+.cover-brand-name { font-size: 0.65rem; letter-spacing: 3px; text-transform: uppercase; color: var(--warm-gray); }
+
+/* === SECTION HEADERS === */
+.section-number {
+  font-family: var(--font-display);
+  font-size: 8rem;
+  color: rgba(255,255,255,0.04);
+  position: absolute;
+  top: 60px; left: 60px;
+  line-height: 1;
+}
+.section-tag {
+  font-size: 0.65rem;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  color: var(--sand);
+  margin-bottom: 16px;
+}
+.section-title {
+  font-family: var(--font-display);
+  font-size: 3.2rem;
+  letter-spacing: 6px;
+  margin-bottom: 24px;
+}
+.section-desc {
+  font-size: 0.95rem;
+  font-weight: 300;
+  color: var(--warm-gray);
+  max-width: 700px;
+  text-align: center;
+  line-height: 1.8;
+  margin-bottom: 60px;
+}
+
+/* === COLOR PALETTE SLIDE === */
+.palette-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+  width: 100%;
+  max-width: 1100px;
+}
+.palette-group { display: flex; flex-direction: column; gap: 16px; }
+.palette-group-title {
+  font-size: 0.65rem;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--warm-gray);
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  margin-bottom: 4px;
+}
+.palette-swatch {
+  display: flex; align-items: center; gap: 16px;
+  padding: 16px;
+  border-radius: 8px;
+  border: 1px solid rgba(255,255,255,0.06);
+  background: rgba(255,255,255,0.02);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.palette-swatch:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+}
+.swatch-color {
+  width: 48px; height: 48px;
+  border-radius: 6px;
+  flex-shrink: 0;
+  border: 1px solid rgba(255,255,255,0.08);
+}
+.swatch-info { display: flex; flex-direction: column; gap: 4px; }
+.swatch-name { font-size: 0.85rem; font-weight: 500; }
+.swatch-hex { font-size: 0.7rem; color: var(--warm-gray); letter-spacing: 1px; font-family: monospace; }
+.swatch-use { font-size: 0.65rem; color: var(--sand); }
+
+.palette-ratio {
+  margin-top: 48px;
+  display: flex;
+  width: 100%;
+  max-width: 1100px;
+  height: 60px;
+  border-radius: 8px;
+  overflow: hidden;
+}
+.ratio-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 2px;
+}
+
+/* === TYPOGRAPHY SLIDE === */
+.type-showcase {
+  width: 100%;
+  max-width: 1100px;
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+}
+.type-row {
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  gap: 32px;
+  align-items: center;
+  padding: 32px;
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,0.06);
+  background: rgba(255,255,255,0.015);
+}
+.type-meta { display: flex; flex-direction: column; gap: 8px; }
+.type-label { font-size: 0.6rem; letter-spacing: 4px; text-transform: uppercase; color: var(--sand); }
+.type-font-name { font-size: 0.8rem; color: var(--warm-gray); }
+.type-usage { font-size: 0.7rem; color: rgba(255,255,255,0.4); }
+.type-sample-display {
+  font-family: var(--font-display);
+  font-size: 4rem;
+  letter-spacing: 8px;
+  line-height: 1;
+}
+.type-sample-body {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  font-weight: 300;
+  line-height: 1.8;
+  color: rgba(255,255,255,0.8);
+}
+.type-sample-handwrite {
+  font-family: var(--font-handwrite);
+  font-size: 2.8rem;
+  color: var(--sand);
+  line-height: 1.2;
+}
+
+/* === BANNER MOCKUP SLIDE === */
+.banner-mockups {
+  width: 100%;
+  max-width: 1200px;
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+}
+
+/* Hero Banner Mockup */
+.mock-hero {
+  width: 100%;
+  height: 480px;
+  border-radius: 12px;
+  overflow: hidden;
+  position: relative;
+  background:
+    url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400"><filter id="n"><feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch"/><feColorMatrix type="saturate" values="0"/></filter><rect width="400" height="400" filter="url(%23n)" opacity="0.12"/></svg>'),
+    linear-gradient(135deg, #1A1A1A 0%, #2D2D2D 50%, #1A1A1A 100%);
+  display: flex;
+  align-items: flex-end;
+  padding: 60px;
+  border: 1px solid rgba(255,255,255,0.06);
+}
+.mock-hero::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: linear-gradient(to top, rgba(26,26,26,0.8) 0%, transparent 60%);
+}
+.mock-hero-content { position: relative; z-index: 1; }
+.mock-hero-tag {
+  font-size: 0.6rem;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  color: var(--sand);
+  margin-bottom: 16px;
+}
+.mock-hero-title {
+  font-family: var(--font-display);
+  font-size: 5rem;
+  letter-spacing: 10px;
+  line-height: 1;
+  margin-bottom: 12px;
+}
+.mock-hero-sub {
+  font-size: 0.85rem;
+  font-weight: 300;
+  color: var(--warm-gray);
+  margin-bottom: 32px;
+  letter-spacing: 1px;
+}
+.mock-hero-cta {
+  display: inline-block;
+  padding: 14px 48px;
+  background: var(--white);
+  color: var(--black);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: all 0.3s;
+}
+.mock-hero-cta:hover {
+  background: var(--sand);
+  color: var(--black);
+}
+.mock-hero-accent {
+  position: absolute;
+  top: 40px; right: 60px;
+  font-family: var(--font-handwrite);
+  font-size: 3.5rem;
+  color: rgba(196,168,130,0.15);
+  transform: rotate(-8deg);
+}
+/* Silhouette shape */
+.mock-hero-silhouette {
+  position: absolute;
+  right: 120px; bottom: 0;
+  width: 280px; height: 420px;
+  background: linear-gradient(to bottom, rgba(155,155,155,0.15), rgba(45,45,45,0.4));
+  clip-path: polygon(40% 0%, 60% 0%, 65% 15%, 70% 30%, 72% 50%, 75% 70%, 80% 100%, 20% 100%, 25% 70%, 28% 50%, 30% 30%, 35% 15%);
+}
+
+/* Category Banner Mockup */
+.mock-category {
+  width: 100%;
+  height: 320px;
+  border-radius: 12px;
+  background: var(--cream);
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+  padding: 40px;
+  border: 1px solid rgba(0,0,0,0.06);
+}
+.mock-cat-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+.mock-cat-placeholder {
+  width: 100%;
+  aspect-ratio: 3/4;
+  background: linear-gradient(135deg, #E8E2DA, #D4CCC2);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+.mock-cat-placeholder::after {
+  content: '';
+  width: 40%; height: 60%;
+  background: rgba(196,168,130,0.3);
+  border-radius: 4px;
+}
+.mock-cat-label {
+  font-size: 0.65rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--charcoal);
+  font-weight: 500;
+}
+
+/* Story Banner */
+.mock-story {
+  width: 100%;
+  height: 360px;
+  border-radius: 12px;
+  background: var(--charcoal);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.06);
+}
+.mock-story-doodle {
+  position: absolute;
+  font-family: var(--font-handwrite);
+  color: rgba(196,168,130,0.12);
+  pointer-events: none;
+}
+.mock-story-doodle:nth-child(1) { font-size: 6rem; top: 20px; left: 40px; transform: rotate(-12deg); }
+.mock-story-doodle:nth-child(2) { font-size: 4rem; bottom: 30px; right: 60px; transform: rotate(8deg); }
+.mock-story-doodle:nth-child(3) { font-size: 3rem; top: 40%; left: 70%; transform: rotate(-5deg); }
+.mock-story-content {
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+.mock-story-title {
+  font-family: var(--font-display);
+  font-size: 3rem;
+  letter-spacing: 8px;
+  margin-bottom: 16px;
+}
+.mock-story-subtitle {
+  font-family: var(--font-handwrite);
+  font-size: 2rem;
+  color: var(--sand);
+}
+
+.banner-label {
+  font-size: 0.6rem;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--warm-gray);
+  margin-bottom: 16px;
+  padding-left: 4px;
+}
+
+/* === PRODUCT MAIN IMAGE SLIDE === */
+.product-grid {
+  width: 100%;
+  max-width: 1200px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 48px;
+}
+.product-style {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.product-style-label {
+  font-size: 0.6rem;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--sand);
+  padding-bottom: 8px;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+.product-mock {
+  aspect-ratio: 1;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+.product-mock-light {
+  background: var(--cream);
+  border: 1px solid rgba(0,0,0,0.06);
+}
+.product-mock-dark {
+  background: linear-gradient(180deg, #252525, #1A1A1A);
+  border: 1px solid rgba(255,255,255,0.06);
+}
+.product-mock-texture {
+  background:
+    url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><filter id="t"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="4" stitchTiles="stitch"/><feColorMatrix type="saturate" values="0"/></filter><rect width="200" height="200" filter="url(%23t)" opacity="0.08"/></svg>'),
+    linear-gradient(135deg, #3a3a3a, #2d2d2d);
+  border: 1px solid rgba(255,255,255,0.06);
+}
+.product-mock-detail {
+  background: linear-gradient(135deg, #E8E2DA 0%, #D4CCC2 100%);
+  border: 1px solid rgba(0,0,0,0.06);
+}
+
+/* Product placeholder shape */
+.product-shape {
+  width: 55%; height: 70%;
+  border-radius: 8px;
+  position: relative;
+}
+.product-shape-light {
+  background: linear-gradient(180deg, #D4CCC2 0%, #C4A882 100%);
+}
+.product-shape-dark {
+  background: linear-gradient(180deg, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0.03) 100%);
+}
+.product-desc {
+  font-size: 0.75rem;
+  color: var(--warm-gray);
+  line-height: 1.6;
+  margin-top: 8px;
+}
+
+/* === DETAIL PAGE SLIDE === */
+.detail-flow {
+  width: 100%;
+  max-width: 800px;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+.detail-block {
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+}
+.detail-block-dark {
+  background: var(--black);
+  min-height: 280px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.detail-block-light {
+  background: var(--cream);
+  min-height: 240px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.detail-label {
+  position: absolute;
+  top: 16px; left: 24px;
+  font-size: 0.55rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  padding: 4px 12px;
+  border-radius: 4px;
+}
+.detail-label-dark { background: rgba(255,255,255,0.06); color: var(--warm-gray); }
+.detail-label-light { background: rgba(0,0,0,0.06); color: #666; }
+.detail-number {
+  position: absolute;
+  top: 12px; right: 24px;
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  letter-spacing: 2px;
+}
+.detail-number-dark { color: rgba(255,255,255,0.06); }
+.detail-number-light { color: rgba(0,0,0,0.06); }
+
+.detail-inner-text {
+  text-align: center;
+  padding: 40px;
+}
+.detail-inner-text h3 {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  letter-spacing: 4px;
+  margin-bottom: 8px;
+}
+.detail-inner-text p {
+  font-size: 0.8rem;
+  font-weight: 300;
+  line-height: 1.6;
+}
+.detail-inner-text-dark h3 { color: var(--white); }
+.detail-inner-text-dark p { color: var(--warm-gray); }
+.detail-inner-text-light h3 { color: var(--charcoal); }
+.detail-inner-text-light p { color: #888; }
+
+.detail-grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2px;
+  width: 100%;
+}
+.detail-grid-item {
+  aspect-ratio: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.detail-grid-item-a { background: linear-gradient(135deg, #E8E2DA, #D4CCC2); }
+.detail-grid-item-b { background: linear-gradient(135deg, #D4CCC2, #C4A882); }
+.detail-grid-item-c { background: linear-gradient(135deg, #C4A882, #B09870); }
+.detail-grid-label {
+  font-size: 0.55rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #888;
+}
+
+/* === SHOOTING GUIDE SLIDE === */
+.guide-grid {
+  width: 100%;
+  max-width: 1100px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+}
+.guide-card {
+  background: rgba(255,255,255,0.02);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 12px;
+  padding: 40px 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  transition: transform 0.3s, border-color 0.3s;
+}
+.guide-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--sand);
+}
+.guide-card-icon {
+  width: 48px; height: 48px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+}
+.guide-card-title {
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  letter-spacing: 3px;
+}
+.guide-card-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.guide-card-list li {
+  font-size: 0.8rem;
+  font-weight: 300;
+  color: var(--warm-gray);
+  padding-left: 16px;
+  position: relative;
+  line-height: 1.6;
+}
+.guide-card-list li::before {
+  content: '→';
+  position: absolute;
+  left: 0;
+  color: var(--sand);
+  font-size: 0.7rem;
+}
+
+/* === BRAND DNA COMPARISON === */
+.dna-grid {
+  width: 100%;
+  max-width: 1200px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+}
+.dna-card {
+  border-radius: 16px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+.dna-card-header {
+  padding: 40px 32px 24px;
+  position: relative;
+}
+.dna-card-body {
+  padding: 032px 40px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.dna-brand-name {
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  letter-spacing: 4px;
+  margin-bottom: 4px;
+}
+.dna-brand-tag {
+  font-size: 0.6rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  opacity: 0.6;
+}
+.dna-keyword {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 4px;
+  font-size: 0.65rem;
+  letter-spacing: 1px;
+  margin-right: 6px;
+  margin-bottom: 6px;
+}
+.dna-visual-bar {
+  height: 40px;
+  border-radius: 6px;
+  display: flex;
+  overflow: hidden;
+}
+.dna-visual-bar-segment {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.5rem;
+  letter-spacing: 1px;
+  font-weight: 600;
+}
+
+/* Represent card */
+.dna-card-represent {
+  background: #0A0A0A;
+  border: 1px solid rgba(255,255,255,0.08);
+}
+.dna-card-represent .dna-brand-name { color: #fff; }
+.dna-card-represent .dna-brand-tag { color: #999; }
+.dna-card-represent .dna-keyword { background: rgba(255,255,255,0.06); color: #ccc; }
+
+/* Broken Planet card */
+.dna-card-bp {
+  background: #2C2418;
+  border: 1px solid rgba(196,168,130,0.15);
+}
+.dna-card-bp .dna-brand-name { color: var(--sand); }
+.dna-card-bp .dna-brand-tag { color: #A09070; }
+.dna-card-bp .dna-keyword { background: rgba(196,168,130,0.12); color: var(--sand); }
+
+/* Alo Yoga card */
+.dna-card-alo {
+  background: var(--cream);
+  border: 1px solid rgba(0,0,0,0.06);
+}
+.dna-card-alo .dna-brand-name { color: var(--charcoal); }
+.dna-card-alo .dna-brand-tag { color: #999; }
+.dna-card-alo .dna-keyword { background: rgba(0,0,0,0.05); color: #666; }
+
+/* Arrow / blend indicator */
+.blend-arrow {
+  font-family: var(--font-display);
+  font-size: 3rem;
+  color: var(--sand);
+  text-align: center;
+  margin: 32px 0;
+  letter-spacing: 8px;
+}
+
+/* INFLATION result card */
+.result-card {
+  width: 100%;
+  max-width: 1200px;
+  border-radius: 16px;
+  overflow: hidden;
+  background: linear-gradient(135deg, #1A1A1A 0%, #2D2D2D 100%);
+  border: 1px solid var(--sand);
+  padding: 60px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 32px;
+}
+.result-card .dna-brand-name {
+  font-size: 2.8rem;
+  letter-spacing: 10px;
+}
+.result-keywords {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+}
+.result-keyword {
+  padding: 8px 20px;
+  border-radius: 6px;
+  font-size: 0.7rem;
+  letter-spacing: 2px;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+.rk-1 { background: rgba(255,255,255,0.06); color: #fff; }
+.rk-2 { background: rgba(196,168,130,0.15); color: var(--sand); }
+.rk-3 { background: rgba(245,240,235,0.1); color: var(--cream); }
+.rk-4 { background: rgba(212,132,90,0.15); color: var(--dirty-orange); }
+.rk-5 { background: rgba(92,107,79,0.15); color: var(--olive); }
+
+.result-formula {
+  font-size: 0.85rem;
+  font-weight: 300;
+  color: var(--warm-gray);
+  text-align: center;
+  line-height: 2;
+  max-width: 700px;
+}
+.result-formula strong { color: var(--white); font-weight: 600; }
+.result-formula em { font-family: var(--font-handwrite); font-size: 1.1rem; color: var(--sand); font-style: normal; }
+
+/* === REPRESENT SCREENSHOT (real reference) === */
+.ref-image-container {
+  width: 100%;
+  max-width: 1100px;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.08);
+  position: relative;
+}
+.ref-image-container img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+.ref-image-overlay {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  padding: 24px 32px;
+  background: linear-gradient(to top, rgba(26,26,26,0.9), transparent);
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+.ref-image-brand {
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  letter-spacing: 4px;
+}
+.ref-image-note {
+  font-size: 0.65rem;
+  color: var(--warm-gray);
+  letter-spacing: 1px;
+}
+
+/* === FOOTER === */
+.slide-footer {
+  min-height: 50vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 80px;
+}
+.footer-title {
+  font-family: var(--font-display);
+  font-size: 4rem;
+  letter-spacing: 8px;
+  margin-bottom: 24px;
+}
+.footer-sub {
+  font-size: 0.9rem;
+  font-weight: 300;
+  color: var(--warm-gray);
+  max-width: 500px;
+  line-height: 1.8;
+  margin-bottom: 40px;
+}
+.footer-sig {
+  font-family: var(--font-handwrite);
+  font-size: 2rem;
+  color: var(--sand);
+}
+
+/* === ANIMATIONS === */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.animate-in {
+  opacity: 0;
+  animation: fadeInUp 0.8s ease forwards;
+}
+.delay-1 { animation-delay: 0.15s; }
+.delay-2 { animation-delay: 0.3s; }
+.delay-3 { animation-delay: 0.45s; }
+.delay-4 { animation-delay: 0.6s; }
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-in { animation: none; opacity: 1; }
+}
+
+/* === SCROLL ANIMATIONS === */
+.reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.7s ease, transform 0.7s ease; }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+</style>
+</head>
+<body>
+
+<!-- NAVIGATION -->
+<nav class="nav">
+  <div class="nav-logo">INFLATION</div>
+  <div class="nav-links">
+    <a href="#brand-dna">品牌DNA</a>
+    <a href="#palette">色彩</a>
+    <a href="#typography">字体</a>
+    <a href="#banner">Banner</a>
+    <a href="#product">主图</a>
+    <a href="#detail">详情页</a>
+    <a href="#guide">拍摄</a>
+  </div>
+</nav>
+
+<!-- SLIDE 0: COVER -->
+<section class="slide slide-cover" id="cover">
+  <div class="cover-tag animate-in">Visual Identity Proposal · 2026</div>
+  <h1 class="cover-title animate-in delay-1">REDEFINE<br>STREET</h1>
+  <p class="cover-subtitle animate-in delay-2">
+    融合 Represent 的高级骨架 · Broken Planet 的街头灵魂 · Alo Yoga 的呼吸质感<br>
+    为INFLATION 阿里国际站打造全新视觉体系
+  </p>
+  <div class="cover-brands animate-in delay-3">
+    <div class="cover-brand">
+      <div class="cover-brand-dot" style="background:#0A0A0A;border:1px solid rgba(255,255,255,0.15);color:#fff;">R</div>
+      <span class="cover-brand-name">Represent</span>
+    </div>
+    <div class="cover-brand">
+      <div class="cover-brand-dot" style="background:#2C2418;border:1px solid rgba(196,168,130,0.3);color:var(--sand);">BP</div>
+      <span class="cover-brand-name">Broken Planet</span>
+    </div>
+    <div class="cover-brand">
+      <div class="cover-brand-dot" style="background:var(--cream);border:1px solid rgba(0,0,0,0.08);color:#666;">A</div>
+      <span class="cover-brand-name">Alo Yoga</span>
+    </div>
+  </div>
+</section>
+
+<!-- SLIDE 1: BRAND DNA COMPARISON -->
+<section class="slide" id="brand-dna" style="background: var(--charcoal);">
+  <span class="section-number">01</span>
+  <div class="section-tag reveal">Brand Analysis</div>
+  <h2 class="section-title reveal">三大品牌视觉 DNA</h2>
+  <p class="section-desc reveal">提取每个品牌最核心的视觉基因，重新组合为INFLATION 的独特语言</p>
+
+  <div class="dna-grid reveal">
+    <!-- Represent -->
+    <div class="dna-card dna-card-represent">
+      <div class="dna-card-header">
+        <div class="dna-brand-name">REPRESENT</div>
+        <div class="dna-brand-tag">British Luxury Streetwear</div>
+      </div>
+      <div class="dna-card-body">
+        <div>
+          <span class="dna-keyword">暗黑奢华</span>
+          <span class="dna-keyword">工业质感</span>
+          <span class="dna-keyword">杂志排版</span>
+          <span class="dna-keyword">强typography</span>
+          <span class="dna-keyword">黑白灰</span>
+        </div>
+        <p style="font-size:0.75rem;color:#888;line-height:1.6;">我们从 Represent 提取：<strong style="color:#fff;">高级感框架</strong> —暗色主调、产品居中构图、极简而有力的排版系统</p>
+        <div class="dna-visual-bar">
+          <div class="dna-visual-bar-segment" style="flex:5;background:#0A0A0A;color:#666;">BLACK</div>
+          <div class="dna-visual-bar-segment" style="flex:3;background:#2D2D2D;color:#888;">GRAY</div>
+          <div class="dna-visual-bar-segment" style="flex:2;background:#fff;color:#333;">WHITE</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Broken Planet -->
+    <div class="dna-card dna-card-bp">
+      <div class="dna-card-header">
+        <div class="dna-brand-name">BROKEN PLANET</div>
+        <div class="dna-brand-tag">Eco Streetwear Culture</div>
+      </div>
+      <div class="dna-card-body">
+        <div>
+          <span class="dna-keyword">大地色系</span>
+          <span class="dna-keyword">手绘涂鸦</span>
+          <span class="dna-keyword">做旧纹理</span>
+          <span class="dna-keyword">拼贴感</span>
+          <span class="dna-keyword">粗糙质感</span>
+        </div>
+        <p style="font-size:0.75rem;color:#A09070;line-height:1.6;">我们从 Broken Planet 提取：<strong style="color:var(--sand);">街头灵魂</strong> — 大地色辅助、手写字体点缀、做旧颗粒感纹理</p>
+        <div class="dna-visual-bar">
+          <div class="dna-visual-bar-segment" style="flex:4;background:#2C2418;color:#A09070;">EARTH</div>
+          <div class="dna-visual-bar-segment" style="flex:3;background:var(--sand);color:#2C2418;">SAND</div>
+          <div class="dna-visual-bar-segment" style="flex:3;background:var(--olive);color:#C4D4B0;">OLIVE</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Alo Yoga -->
+    <div class="dna-card dna-card-alo">
+      <div class="dna-card-header">
+        <div class="dna-brand-name">ALO YOGA</div>
+        <div class="dna-brand-tag">Mindful Movement</div>
+      </div>
+      <div class="dna-card-body">
+        <div>
+          <span class="dna-keyword">自然光感</span>
+          <span class="dna-keyword">大量留白</span>
+          <span class="dna-keyword">柔和质感</span>
+          <span class="dna-keyword">极简高级</span>
+          <span class="dna-keyword">莫兰迪</span>
+        </div>
+        <p style="font-size:0.75rem;color:#888;line-height:1.6;">我们从 Alo Yoga 提取：<strong style="color:var(--charcoal);">呼吸质感</strong> — 大量留白、柔和自然光、面料细节特写、极简产品陈列</p>
+        <div class="dna-visual-bar">
+          <div class="dna-visual-bar-segment" style="flex:5;background:var(--cream);color:#999;">CREAM</div>
+          <div class="dna-visual-bar-segment" style="flex:3;background:#E8E2DA;color:#999;">NUDE</div>
+          <div class="dna-visual-bar-segment" style="flex:2;background:#D4CCC2;color:#888;">WARM</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="blend-arrow reveal">↓ BLEND↓</div>
+
+  <!-- INFLATION Result -->
+  <div class="result-card reveal">
+    <div class="dna-brand-name" style="color:var(--white);">INFLATION</div>
+    <div class="result-keywords">
+      <span class="result-keyword rk-1">暗黑高级 ×骨架</span>
+      <span class="result-keyword rk-2">大地街头 × 灵魂</span>
+      <span class="result-keyword rk-3">极简留白 × 呼吸</span>
+      <span class="result-keyword rk-4">脏橘点缀 × 态度</span>
+      <span class="result-keyword rk-5">橄榄绿 × 可持续</span>
+    </div>
+    <p class="result-formula">
+      <strong>Represent</strong> 的高级骨架 +<em>Broken Planet</em> 的街头灵魂 + <strong>Alo Yoga</strong> 的呼吸质感<br>
+      = INFLATION 全新视觉语言
+    </p>
+  </div>
+</section>
+
+<!-- SLIDE 2: COLOR PALETTE -->
+<section class="slide" id="palette" style="background: var(--black);">
+  <span class="section-number">02</span>
+  <div class="section-tag reveal">Color System</div>
+  <h2 class="section-title reveal">色彩体系</h2>
+  <p class="section-desc reveal">70% 主色 · 25% 辅助 · 5% 点缀 — 从三个品牌提炼的色彩比例</p>
+
+  <div class="palette-grid reveal">
+    <!-- Primary -->
+    <div class="palette-group">
+      <div class="palette-group-title">主色调 ·70%</div>
+      <div class="palette-swatch">
+        <div class="swatch-color" style="background: #1A1A1A;"></div>
+        <div class="swatch-info">
+          <span class="swatch-name">哑光黑</span>
+          <span class="swatch-hex">#1A1A1A</span>
+          <span class="swatch-use">背景 / 主 Banner底色</span>
+        </div>
+      </div>
+      <div class="palette-swatch">
+        <div class="swatch-color" style="background: #2D2D2D;"></div>
+        <div class="swatch-info">
+          <span class="swatch-name">深炭灰</span>
+          <span class="swatch-hex">#2D2D2D</span>
+          <span class="swatch-use">次级背景 / 详情页区块</span>
+        </div>
+      </div>
+      <div class="palette-swatch">
+        <div class="swatch-color" style="background: #FFFFFF; border-color: rgba(255,255,255,0.2);"></div>
+        <div class="swatch-info">
+          <span class="swatch-name">纯白</span>
+          <span class="swatch-hex">#FFFFFF</span>
+          <span class="swatch-use">文字 / 留白区域</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Secondary -->
+    <div class="palette-group">
+      <div class="palette-group-title">辅助色 · 25%</div>
+      <div class="palette-swatch">
+        <div class="swatch-color" style="background: #C4A882;"></div>
+        <div class="swatch-info">
+          <span class="swatch-name">沙石色</span>
+          <span class="swatch-hex">#C4A882</span>
+          <span class="swatch-use">← Broken Planet 大地感</span>
+        </div>
+      </div>
+      <div class="palette-swatch">
+        <div class="swatch-color" style="background: #9B9B9B;"></div>
+        <div class="swatch-info">
+          <span class="swatch-name">暖灰</span>
+          <span class="swatch-hex">#9B9B9B</span>
+          <span class="swatch-use">过渡色 / 分割线</span>
+        </div>
+      </div>
+      <div class="palette-swatch">
+        <div class="swatch-color" style="background: #F5F0EB;"></div>
+        <div class="swatch-info">
+          <span class="swatch-name">米白</span>
+          <span class="swatch-hex">#F5F0EB</span>
+          <span class="swatch-use">← Alo Yoga 柔和质感区块</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Accent -->
+    <div class="palette-group">
+      <div class="palette-group-title">点缀色 · 5%</div>
+      <div class="palette-swatch">
+        <div class="swatch-color" style="background: #D4845A;"></div>
+        <div class="swatch-info">
+          <span class="swatch-name">脏橘</span>
+          <span class="swatch-hex">#D4845A</span>
+          <span class="swatch-use">CTA 按钮 / 促销标签</span>
+        </div>
+      </div>
+      <div class="palette-swatch">
+        <div class="swatch-color" style="background: #5C6B4F;"></div>
+        <div class="swatch-info">
+          <span class="swatch-name">橄榄绿</span>
+          <span class="swatch-hex">#5C6B4F</span>
+          <span class="swatch-use">环保/可持续系列专用</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Ratio bar -->
+  <div class="palette-ratio reveal">
+    <div class="ratio-bar" style="flex:35;background:#1A1A1A;color:rgba(255,255,255,0.4);">黑</div>
+    <div class="ratio-bar" style="flex:20;background:#2D2D2D;color:rgba(255,255,255,0.5);">灰</div>
+    <div class="ratio-bar" style="flex:15;background:#FFFFFF;color:#333;">白</div>
+    <div class="ratio-bar" style="flex:10;background:#C4A882;color:#2C2418;">沙石</div>
+    <div class="ratio-bar" style="flex:8;background:#F5F0EB;color:#888;">米白</div>
+    <div class="ratio-bar" style="flex:5;background:#9B9B9B;color:#333;">暖灰</div>
+    <div class="ratio-bar" style="flex:4;background:#D4845A;color:#fff;">橘</div>
+    <div class="ratio-bar" style="flex:3;background:#5C6B4F;color:#C4D4B0;">绿</div>
+  </div>
+</section>
+
+<!-- SLIDE 3: TYPOGRAPHY -->
+<section class="slide" id="typography" style="background: var(--black);">
+  <span class="section-number">03</span>
+  <div class="section-tag reveal">Typography</div>
+  <h2 class="section-title reveal">字体规范</h2>
+  <p class="section-desc reveal">大标题的冲击力 · 正文的可读性 · 手写体的街头温度</p>
+
+  <div class="type-showcase reveal">
+    <div class="type-row">
+      <div class="type-meta">
+        <span class="type-label">Display /大标题</span>
+        <span class="type-font-name">Bebas Neue / Druk Wide</span>
+        <span class="type-usage">Banner标题、详情页区块标题</span>
+      </div>
+      <div class="type-sample-display">REDEFINE STREET</div>
+    </div>
+
+    <div class="type-row">
+      <div class="type-meta">
+        <span class="type-label">Body / 正文</span>
+        <span class="type-font-name">Inter / Helvetica Neue</span>
+        <span class="type-usage">产品描述、详情页文案</span>
+      </div>
+      <div class="type-sample-body">Premium heavyweight cotton fleece · 420GSM brushed interior · Oversized relaxed fit with dropped shoulders · Reinforced ribbed cuffs and hem</div>
+    </div>
+
+    <div class="type-row">
+      <div class="type-meta">
+        <span class="type-label">Accent / 手写点缀</span>
+        <span class="type-font-name">Caveat / 手写风格</span>
+        <span class="type-usage">Slogan、品牌故事、装饰性文字</span>
+      </div>
+      <div class="type-sample-handwrite">not for everyone · made different</div>
+    </div>
+  </div>
+</section>
+
+<!-- SLIDE 4: BANNER DESIGN -->
+<section class="slide" id="banner" style="background: var(--charcoal);">
+  <span class="section-number">04</span>
+  <div class="section-tag reveal">Banner Design</div>
+  <h2 class="section-title reveal">首页 BANNER 方向</h2>
+  <p class="section-desc reveal">三种 Banner 类型交替使用 · 黑色与米白形成视觉节奏</p>
+
+  <div class="banner-mockups">
+    <!-- Hero Banner -->
+    <div class="reveal">
+      <div class="banner-label">Banner 1 — Hero主视觉 ·暗色工业风</div>
+      <div class="mock-hero">
+        <div class="mock-hero-silhouette"></div>
+        <div class="mock-hero-accent">street culture</div>
+        <div class="mock-hero-content">
+          <div class="mock-hero-tag">FW26Collection</div>
+          <div class="mock-hero-title">REDEFINE<br>STREET</div>
+          <div class="mock-hero-sub">Premium Streetwear · Not For Everyone</div>
+          <a class="mock-hero-cta" href="#">SHOP NOW</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Category Banner -->
+    <div class="reveal">
+      <div class="banner-label">Banner 2 — 品类导航 · 米白极简 (Alo Yoga 风格)</div>
+      <div class="mock-category">
+        <div class="mock-cat-item">
+          <div class="mock-cat-placeholder"></div>
+          <span class="mock-cat-label">Hoodies</span>
+        </div>
+        <div class="mock-cat-item">
+          <div class="mock-cat-placeholder"></div>
+          <span class="mock-cat-label">T-Shirts</span>
+        </div>
+        <div class="mock-cat-item">
+          <div class="mock-cat-placeholder"></div>
+          <span class="mock-cat-label">Pants</span>
+        </div>
+        <div class="mock-cat-item">
+          <div class="mock-cat-placeholder"></div>
+          <span class="mock-cat-label">Sets</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Story Banner -->
+    <div class="reveal">
+      <div class="banner-label">Banner 3 — 故事/概念 · Broken Planet 涂鸦风</div>
+      <div class="mock-story">
+        <span class="mock-story-doodle">wear the change</span>
+        <span class="mock-story-doodle">★ real★</span>
+        <span class="mock-story-doodle">~ earth ~</span>
+        <div class="mock-story-content">
+          <div class="mock-story-title">OUR STORY</div>
+          <div class="mock-story-subtitle">made different, worn bold</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SLIDE 5: PRODUCT MAIN IMAGE -->
+<section class="slide" id="product" style="background: var(--black);">
+  <span class="section-number">05</span>
+  <div class="section-tag reveal">Product Images</div>
+  <h2 class="section-title reveal">产品主图风格</h2>
+  <p class="section-desc reveal">4 张主图 = 4 种视角 · 干净白底 +暗色场景 + 面料特写 + 质感平铺</p>
+
+  <div class="product-grid reveal">
+    <!-- Style 1: Clean light -->
+    <div class="product-style">
+      <div class="product-style-label">主图 1 — 白底/浅底 (搜索展示)</div>
+      <div class="product-mock product-mock-light">
+        <div class="product-shape product-shape-light" style="border-radius: 4px;"></div>
+      </div>
+      <div class="product-desc">纯白或米白背景 · 产品居中 · 大量留白 · 柔和顶光 —Alo Yoga 风格</div>
+    </div>
+
+    <!-- Style 2: Dark scene -->
+    <div class="product-style">
+      <div class="product-style-label">主图 2-3 — 暗色场景图(穿搭氛围)</div>
+      <div class="product-mock product-mock-dark">
+        <div class="product-shape product-shape-dark" style="clip-path: polygon(35% 0%, 65% 0%, 68% 20%, 72% 100%, 28% 100%, 32% 20%); height: 80%;"></div>
+      </div>
+      <div class="product-desc">工业场景 · 模特冷峻姿态 · 暗色背景 · 降饱和度 — Represent 风格</div>
+    </div>
+
+    <!-- Style 3: Fabric close-up -->
+    <div class="product-style">
+      <div class="product-style-label">主图 4 — 面料特写 (质感呈现)</div>
+      <div class="product-mock product-mock-detail">
+        <div style="width:80%;height:80%;border-radius:8px;background:linear-gradient(45deg,#CCC0B0,#B8A898,#D4CCC2);display:flex;align-items:center;justify-content:center;">
+          <span style="font-size:0.6rem;letter-spacing:3px;color:#888;text-transform:uppercase;">420gsm fabric close-up</span>
+        </div>
+      </div>
+      <div class="product-desc">自然光 · 微距拍摄 · 看到纤维/编织细节 — Alo Yoga 质感呈现</div>
+    </div>
+
+    <!-- Style 4: Flat lay -->
+    <div class="product-style">
+      <div class="product-style-label">主图 5 — 质感平铺 (搭配展示)</div>
+      <div class="product-mock product-mock-texture">
+        <div style="width:70%;height:50%;background:rgba(196,168,130,0.15);border-radius:4px;display:flex;align-items:center;justify-content:center;">
+          <span style="font-size:0.6rem;letter-spacing:3px;color:var(--warm-gray);text-transform:uppercase;">flat lay on texture</span>
+        </div>
+      </div>
+      <div class="product-desc">做旧木板/水泥台面背景 · 产品平铺 — Broken Planet 粗糙材质</div>
+    </div>
+  </div>
+</section>
+
+<!-- SLIDE 6: DETAIL PAGE -->
+<section class="slide" id="detail" style="background: var(--charcoal);">
+  <span class="section-number">06</span>
+  <div class="section-tag reveal">Detail Page</div>
+  <h2 class="section-title reveal">详情页结构</h2>
+  <p class="section-desc reveal">黑色区块与米白区块交替 · 零间距无缝衔接 · 图片说话</p>
+
+  <div class="detail-flow reveal">
+    <!-- Block 1: Hero -->
+    <div class="detail-block detail-block-dark">
+      <span class="detail-label detail-label-dark">①氛围大图</span>
+      <span class="detail-number detail-number-dark">01</span>
+      <div class="detail-inner-text detail-inner-text-dark">
+        <h3>PRODUCT NAME</h3>
+        <p>模特场景图 · 暗色调 · Represent杂志感· 叠加产品名称大字</p>
+      </div>
+    </div>
+
+    <!-- Block 2: Product360 -->
+    <div class="detail-block detail-block-light">
+      <span class="detail-label detail-label-light">② 产品360°展示</span>
+      <span class="detail-number detail-number-light">02</span>
+      <div class="detail-inner-text detail-inner-text-light">
+        <h3 style="font-size:1.6rem;">正面 · 背面 · 侧面</h3>
+        <p>米白底 · 干净排列 · Alo Yoga 极简展示</p>
+      </div>
+    </div>
+
+    <!-- Block 3: Fabric detail -->
+    <div class="detail-block" style="min-height:200px;">
+      <div class="detail-grid-3">
+        <div class="detail-grid-item detail-grid-item-a"><span class="detail-grid-label">③ 面料纹理</span></div>
+        <div class="detail-grid-item detail-grid-item-b"><span class="detail-grid-label">③缝线/标签</span></div>
+        <div class="detail-grid-item detail-grid-item-c"><span class="detail-grid-label">③ 工艺细节</span></div>
+      </div>
+    </div>
+
+    <!-- Block 4: Size chart -->
+    <div class="detail-block detail-block-dark" style="min-height:180px;">
+      <span class="detail-label detail-label-dark">④ 尺码表</span>
+      <span class="detail-number detail-number-dark">04</span>
+      <div class="detail-inner-text detail-inner-text-dark">
+        <h3 style="font-size:1.4rem;">SIZE CHART</h3>
+        <p>简洁表格 · 黑底白字 · 配模特身材参考</p>
+      </div>
+    </div>
+
+    <!-- Block 5: Styling -->
+    <div class="detail-block detail-block-light" style="min-height:180px;">
+      <span class="detail-label detail-label-light">⑤ 搭配推荐</span>
+      <span class="detail-number detail-number-light">05</span>
+      <div class="detail-inner-text detail-inner-text-light">
+        <h3 style="font-size:1.4rem;">STYLE WITH</h3>
+        <p>2-3 套穿搭 look · 场景图 · 可链接其他产品</p>
+      </div>
+    </div>
+
+    <!-- Block 6: Brand story -->
+    <div class="detail-block detail-block-dark" style="min-height:160px;position:relative;">
+      <span class="detail-label detail-label-dark">⑥ 品牌故事条</span>
+      <span class="detail-number detail-number-dark">06</span>
+      <div style="position:absolute;right:40px;top:20px;font-family:var(--font-handwrite);font-size:2rem;color:rgba(196,168,130,0.1);transform:rotate(-5deg);">made different</div>
+      <div class="detail-inner-text detail-inner-text-dark">
+        <h3 style="font-size:1.2rem;">INFLATION STORY</h3>
+        <p>固定横幅模板 · 品牌理念 · Broken Planet 手绘元素</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SLIDE 7: SHOOTING GUIDE -->
+<section class="slide" id="guide" style="background: var(--black);">
+  <span class="section-number">07</span>
+  <div class="section-tag reveal">Shooting Guide</div>
+  <h2 class="section-title reveal">拍摄指引</h2>
+  <p class="section-desc reveal">给摄影团队和美工的视觉标准 · 确保全店风格一致</p>
+
+  <div class="guide-grid reveal">
+    <div class="guide-card">
+      <div class="guide-card-icon" style="background:rgba(255,255,255,0.06);">📸</div>
+      <div class="guide-card-title">模特 & 场景</div>
+      <ul class="guide-card-list">
+        <li>模特多元化，有态度，不要传统电商笑脸</li>
+        <li>场景以工业风为主：仓库、天台、地下停车场、街头</li>
+        <li>姿态随意但有态度，不刻意摆拍</li>
+        <li>1-2 个模特为主，避免过多人物</li>
+      </ul>
+    </div>
+
+    <div class="guide-card">
+      <div class="guide-card-icon" style="background:rgba(196,168,130,0.1);">💡</div>
+      <div class="guide-card-title">光线 & 后期</div>
+      <ul class="guide-card-list">
+        <li>自然光 + 补光，避免过亮过平</li>
+        <li>面料特写：微距镜头，窗边自然光</li>
+        <li>统一 LUT 调色预设：降饱和 10-15%</li>
+        <li>暗部轻微提亮 + 加轻微颗粒感滤镜</li>
+      </ul>
+    </div>
+
+    <div class="guide-card">
+      <div class="guide-card-icon" style="background:rgba(92,107,79,0.1);">📐</div>
+      <div class="guide-card-title">构图 & 规范</div>
+      <ul class="guide-card-list">
+        <li>主图尺寸 800×800px（国际站标准）</li>
+        <li>详情页图宽 750-790px</li>
+        <li>白底图：产品居中，周围大量留白</li>
+        <li>图与图之间零间距无缝衔接</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER / CLOSING -->
+<section class="slide slide-footer" style="background: var(--black);">
+  <div class="footer-title reveal">READY TO<br>REDEFINE?</div>
+  <div class="footer-sub reveal">
+    以上为 INFLATION 阿里国际站街头风店铺视觉升级方案<br>
+    确认方向后，可进一步细化为设计师可执行的详细规范文档
+  </div>
+  <div class="footer-sig reveal">—国际大虾 🦐 —</div>
+</section>
+
+<!-- SCROLL REVEAL SCRIPT -->
+<script>
+const reveals = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.15 });
+reveals.forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
